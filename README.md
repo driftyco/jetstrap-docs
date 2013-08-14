@@ -1,4 +1,4 @@
-jetstrap-docs
+C-Max Apps
 =============
 
-Jetstrap Documentation and Tutorials
+Documentation and Tutorials for api
