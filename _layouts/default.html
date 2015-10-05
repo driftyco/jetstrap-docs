@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang }}">
+  <head>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }}</title>
+
+    {% include meta.html %}
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+
+    <meta charset="utf-8">
+    <title>Thing+ Docs{% if page.title }%} - {{page.title}}{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+    <link href="/assets/css/font-dali/fontdali.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+
+    <body>
+    <!--<a href="https://github.com/driftyco/jetstrap-docs"><img style="position: absolute; z-index: 10000; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>-->
+    
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="pull-left">
+            <a href="/"><img src="{{ site.baseurl }}/assets/logo.png"></a>
+          </div>
+          <!--<ul class="nav pull-right">-->
+            <!--<li><a href="http://www.thingplus.net/" target="_blank">Thing+</a></li>-->
+            <!--<li><a href="http://techblog.daliworks.net/" target="_blank">Blog</a></li>-->
+          <!--</ul>-->
+          <!-- language selector -->
+          <div class="pull-right lang-select">
+            <ul>
+              <li>
+                {% assign posts=site.posts | where:"date", page.date | sort: 'path' %}
+                {% for post in posts reversed %}
+                {% if page.lang == post.lang %} 
+                  {% assign current_lang = 'active' %} 
+                {% else %}
+                  {% assign current_lang = '' %} 
+                {% endif %}       
+                  <a href="{{ post.url }}" class="lang {{ current_lang }}">{{ site.data.i18n[post.lang].lang }}</a>
+                {% endfor %}
+              </li>
+            </ul>      
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3">
+          <ul id="menu" class="nav nav-list" data-spy="affix">
+            <li class="nav-header">{{ site.data.i18n[page.lang].submenu_guide }}</li>
+            {% assign posts = site.posts | where:"lang", page.lang %} 
+            {% for post in posts %} 
+              {% if post.title != 'index' %} 
+                {% assign current = nil %} 
+                {% if page.url contains post.url %} 
+                  {% assign current = 'active' %} 
+                {% endif %}
+                <li data-section="{{ post.url }}" class="{{ current }} lang">
+                  <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.title }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+            <li class="nav-header">{{ site.data.i18n[page.lang].submenu_support }}</li>
+            <li><a href="mailto:contact@thingplus.net">{{ site.data.i18n[page.lang].email_contact }}</a></li>
+            <li><a href="https://www.thingplus.net/" target="_blank">{{ site.data.i18n[page.lang].go_thingplus }}</a></li>
+          </ul>
+        </div>
+
+        <div id="main" role="main" class="col-xs-12 col-sm-9">
+          {% if page.type != 'pages' %}
+            <h1>{{ page.title }}</h1>
+            <hr>
+          {% endif %}
+
+          {{content}}
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script src="/assets/js/bootstrap.js">
+    </script>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer pull-right">
+          Copyright &copy; 2015 <a href="http://www.daliworks.net" target="_blank">Daliworks, Inc.</a> ALL RIGHTS RESERVED.
+        </footer>
+      </div>
+    </div>
+
+    {% include analytics.html %}
+  </body>
+</html>

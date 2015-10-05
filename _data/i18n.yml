@@ -1,0 +1,12 @@
+ko:
+  lang: "한국어"
+  submenu_guide: "Thing+ 사용 안내"
+  submenu_support: "SUPPORT"
+  email_contact: "이메일 문의"
+  go_thingplus: "Thing+ 바로가기"
+en:
+  lang: "English"
+  submenu_guide: "Thing+ Guide"
+  submenu_support: "SUPPORT"
+  email_contact: "Contact"
+  go_thingplus: "Go Thing+"
